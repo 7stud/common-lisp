@@ -51,7 +51,13 @@ WARNING: Function is not TRACEd: ANYODDP
 (ANYODDP)
 CL-USER>
 ```
-(Note there are NO QUOTES around the function name `anyoddp` above.  I've spent an hour typing in different function names with quotes only to get the blasted error: `""my-func" is an invalid function name`, then deleting/reinstalling quicklisp only to get the same blasted error.  Learn from my mistake!)
+Note there are NO QUOTES around the function name `anyoddp` above:
+
+```
+(dtrace anyoddp)
+```
+
+I've spent an hour typing in different function names with quotes only to get the blasted error: `""my-func" is an invalid function name`, then deleting/reinstalling quicklisp, configuring `dtrace` again only to get the same blasted error.  Learn from my mistake!
 
 Then:
 
