@@ -1,4 +1,4 @@
-I installed `quicklisp`.  Then I put the `dtrace.lisp` file in:
+I installed [quicklisp](https://www.quicklisp.org/beta/).  Then I put the `dtrace.lisp` file in:
 
 ```
 ~/quicklisp/local-projects/dtrace/
