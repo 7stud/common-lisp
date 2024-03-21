@@ -1,4 +1,4 @@
-3-21-2024
+3-21-2024  
 I'm using emacs 29.1 and slime.
 
 1. Install [quicklisp](https://www.quicklisp.org/beta/).
