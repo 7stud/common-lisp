@@ -2,7 +2,7 @@ I'm using emacs 29.1 and slime.
 
 1. Install [quicklisp](https://www.quicklisp.org/beta/).
 
-2. Install `fiveam`:
+2. Use `quicklisp` to install `fiveam` (a testing framework):
    ```
    CL-USER> (ql:quickload "fiveam")
    To load "fiveam":
@@ -13,7 +13,7 @@ I'm using emacs 29.1 and slime.
     ("fiveam")
     CL-USER>
     ```
-3. Install `cl-project` to help create a skeleton project:
+3. Use `quicklisp` to install `cl-project` to help create a skeleton project:
 
    ```
    CL-USER> (ql:quickload "cl-project")
@@ -28,7 +28,7 @@ I'm using emacs 29.1 and slime.
    `ql:quickload` not only downloads software and its dependencies, it loads the software into the repl.
     If the software has already been downloaded, then `ql:quickload` just loads the software into the repl.
 
-4. Create a project inside the directory `~/quicklisp/local-projects/`:
+4. Use `cl-project` to create a project inside the directory `~/quicklisp/local-projects/`:
    ```
    CL-USER> (cl-project:make-project #p "~/quicklisp/local-projects/my-projects/proj2")
    writing ~/quicklisp/local-projects/my-projects/proj2/proj2.asd
@@ -43,7 +43,7 @@ I'm using emacs 29.1 and slime.
    In this case, I named my project `proj2`.
 
    
-5. Go to the file `.../proj2/src/main.lisp` and add a function you want to test, for instance:
+5. Go to the file `.../proj2/src/main.lisp` and add a function that you want to test, for instance:
 
 ```
 (defpackage proj2
@@ -69,9 +69,6 @@ I'm using emacs 29.1 and slime.
 (defun do-stuff ()
   "hello")
 ```
-
-   
-
 6. Go to the file `...proj2/tests/main.lisp` and change the `:use` declarations to the following:
 ```
 (defpackage proj2/tests/main
@@ -152,7 +149,7 @@ I'm using emacs 29.1 and slime.
   :perform (test-op (op c) (symbol-call :proj2/tests/main :test-proj2)))   ;; <===== CHANGE HERE
 ```
 
-10.  To run the tests:
+10.  Run the tests:
 
 ```
 CL-USER> (asdf:test-system 'proj2)
@@ -194,8 +191,7 @@ If you get persistent errors, like:
 ```
 ; Evaluation aborted on #<NAME-CONFLICT {70083FF8B3}>
 ```
-
-after you've been editing any of your project's files to correct those very errors, then reload both 
+that you know you've corrected, then try reloading both of your project's
 "systems" in the repl:
 ```
 CL-USER> (ql:quickload "proj2")
