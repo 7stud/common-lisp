@@ -188,7 +188,7 @@ T
 CL-USER>
 ```
 
-I think `asdf` is supposed to load your project, but I find that many times, I get errors when
+I think `asdf` is supposed to load your project, but I find that many times I get errors when
 trying to run the tests after I've modified my project's files, even though I know I've corrected the  
 errors, and I've saved the files.  If you get persistent errors that you can't solve or that you don't 
 understand after you've been editing any of your project's files, try reloading both of your 
