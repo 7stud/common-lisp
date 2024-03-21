@@ -186,13 +186,11 @@ T
 CL-USER>
 ```
 
-If you get persistent errors, like:
-
-```
-; Evaluation aborted on #<NAME-CONFLICT {70083FF8B3}>
-```
-that you know you've corrected, then try reloading both of your project's
-"systems" in the repl:
+I think `asdf` is supposed to load your project, but I find that many times, I get errors when
+trying to run the tests after I've modified my project's files, even though I know I've corrected the  
+errors, and I've saved the files.  If you get persistent errors that you can't solve or that you don't 
+understand after you've been editing any of your project's files, try reloading both of your 
+project's "systems" in the repl:
 ```
 CL-USER> (ql:quickload "proj2")
 To load "proj2":
@@ -209,19 +207,20 @@ To load "proj2/tests":
 [package proj2/tests/main]
 ("proj2/tests")
 ```
+
 Then try the following again:
 ```
 CL-USER> (asdf:test-system 'proj2)
 ```
 
-The following line can cause a lot of headaches:
+The following line in `proj2.asd` can cause a lot of headaches:
 
 ```
 :perform (test-op (op c) (symbol-call :proj2/tests/main :test-proj2)))
 ```
 
-If you don't define your own function, `test-proj2`, to run your tests, then `:perform` line 
-needs to look like this:
+If you don't define your own function, `test-proj2`, to run your tests, then the `:perform`
+line needs to look like this:
 ```
  :perform (test-op (o s)
        (symbol-call :fiveam '#:run!
