@@ -104,7 +104,7 @@ I'm using emacs 29.1 and slime.
 (defun test-proj2 ()
   (run! 'master-suite))
 ```
-   and put it above your test suite:
+`run!` is a function in the `fiveam` package. Put the function above your test suite:
 ```
 (defpackage proj2/tests/main
   (:use :cl
@@ -123,6 +123,7 @@ I'm using emacs 29.1 and slime.
   (is (equal "goodbye" (do-stuff)))
   (is (equal "hello" (do-stuff))))
 ```
+
 
 9. Go to the file  `...proj2/proj2.asd` and change some of the configuration so that it looks like the
    the following:
@@ -212,9 +213,30 @@ To load "proj2/tests":
 [package proj2/tests/main]
 ("proj2/tests")
 ```
+Then try the following again:
+```
+CL-USER> (asdf:test-system 'proj2)
+```
 
+The following line can cause a lot of headaches:
 
+```
+:perform (test-op (op c) (symbol-call :proj2/tests/main :test-proj2)))
+```
 
+If you don't define your own function, `test-proj2`, to run your tests, then `:perform` line 
+needs to look like this:
+```
+ :perform (test-op (o s)
+       (symbol-call :fiveam '#:run!
+          (find-symbol* '#:master-suite
+                        :proj1/tests/main))))
+```
+That tortured syntax is necessary because the `:perform` line is read before any of the packages or symbols have 
+been created in your project.  The function `symbol-call` allows you to specify a package, `fiveam`, and a 
+function in that package, `run!`, and the args for the function--when the package hasn't been created yet.
+The args for the `run!` function are whatever the function `find-symbol*` returns.  `find-symbol*` lets you
+specify a symbol, `master-suite`, in a package, `proj1/tests/main` that hasn't been read yet.
 
 
 
