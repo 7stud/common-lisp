@@ -147,7 +147,8 @@ I'm using emacs 29.1 and slime.
                 :components
                 ((:file "main"))))
   :description "Test system for proj2"
-  :perform (test-op (op c) (symbol-call :proj2/tests/main :test-proj2)))   ;; <===== CHANGE HERE
+  :perform (test-op (op c)
+              (symbol-call :proj2/tests/main :test-proj2)))   ;; <===== CHANGE HERE
 ```
 
 10.  Run the tests:
