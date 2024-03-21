@@ -4,4 +4,6 @@
 
    ```(ql:quickload "fiveam")```
 
-4. To help create a skeleton project, install `cl-project`: (ql:quickload "cl-project")
+4. To help create a skeleton project, install `cl-project`:
+
+   ```(ql:quickload "cl-project")```
