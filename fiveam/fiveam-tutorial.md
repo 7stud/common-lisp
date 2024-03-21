@@ -101,7 +101,7 @@ I'm using emacs 29.1 and slime.
 (defun test-proj2 ()
   (run! 'master-suite))
 ```
-`run!` is a function in the `fiveam` package. Put the function above your test suite:
+`run!` is a function in the `fiveam` package. Put your function above your test suite:
 ```
 (defpackage proj2/tests/main
   (:use :cl
@@ -123,7 +123,7 @@ I'm using emacs 29.1 and slime.
 
 
 9. Go to the file  `...proj2/proj2.asd` and change some of the configuration so that it looks like the
-   the following:
+   the following (changes are marked with comments):
 
 ```
 (defsystem "proj2"
@@ -155,8 +155,8 @@ I'm using emacs 29.1 and slime.
 CL-USER> (asdf:test-system 'proj2)
 
 Running test suite MASTER-SUITE
- Running test DO-STUFF-RETURN-VAL f.
- Did 2 checks.
+ Running test DO-STUFF-RETURN-VAL f.   ;; <==== Each f represents a failed test. 
+ Did 2 checks.                         ;;       Each dot represents a passing test.
     Pass: 1 (50%)
     Skip: 0 ( 0%)
     Fail: 1 (50%)
