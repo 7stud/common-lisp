@@ -1,7 +1,9 @@
 3-22-2024   
-I'm using emacs 29.1 and slime.
+I'm using emacs 29.1, sbcl 2.4.0, and slime 2.29.1.
 
-Here is a file that defines a package containing one function followed by some test suites:
+1. Install [quicklisp](https://www.quicklisp.org/beta/).
+
+2. Here is a file that defines a package containing one function followed by some test suites:
 ```
 ;; c.lisp
 
