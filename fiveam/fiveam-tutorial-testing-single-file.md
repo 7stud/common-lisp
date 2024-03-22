@@ -44,7 +44,7 @@ I'm using emacs 29.1, sbcl 2.4.0, and slime 2.29.1.
 
 ```
 
-Here's what I tried:
+3. Here's what I tried:
 ```
 C-x C-s   save c.lisp
 C-c C-k   compile c.lisp
