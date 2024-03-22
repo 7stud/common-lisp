@@ -1,0 +1,11 @@
+(defpackage proj2
+  (:use :cl)
+  (:export :greet))
+(in-package :proj2)
+
+;; blah blah blah.
+
+;; I ADDED THE FOLLOWING:
+(defun greet (greeting)
+  greeting)
+
