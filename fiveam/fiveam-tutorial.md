@@ -92,8 +92,8 @@ I'm using emacs 29.1 and slime.
   :description "Test my system.")
 (in-suite master-suite)
 
-(test whether-greet-returns-the-proper-greeting
-  (is (equal "goodbye" (greet "hello")))
+(test whether-greet-returns-the-proper-greeting    ;; The name of the test cannot be just 'greet'
+  (is (equal "goodbye" (greet "hello")))           
   (is (equal "hello" (greet "hello")))
   (is (equal "mars" (greet "goodbye"))))
 ```
