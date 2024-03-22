@@ -1,0 +1,22 @@
+;; .../proj2/tests/main.lisp
+
+(defpackage proj2/tests/main
+  (:use :cl
+        :proj2
+        :fiveam))
+(in-package :proj2/tests/main)
+
+(defun test-proj2 ()
+  (run! 'master-suite))
+
+(def-suite master-suite
+  :description "Test my system.")
+(in-suite master-suite)
+
+(test whether-greet-returns-the-proper-greeting
+  (is (equal "goodbye" (greet "hello")))
+  (is (equal "hello" (greet "hello")))
+  (is (equal "mars" (greet "goodbye"))))
+
+
+
