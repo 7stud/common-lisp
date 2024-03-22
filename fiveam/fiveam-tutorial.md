@@ -54,21 +54,21 @@ I'm using emacs 29.1 and slime.
 ;; blah blah blah.
 
 ;; I ADDED THE FOLLOWING:
-(defun do-stuff ()
-  "hello")
+(defun greet (greeting)
+  greeting)
 ```
    Then export the function:
 ```
 (defpackage proj2
   (:use :cl)
-  (:export :do-stuff))   ;; <==== CHANGE HERE
+  (:export :greet))   ;; <==== CHANGE HERE
 (in-package :proj2)
 
 ;; blah blah blah.
 
 ;; I ADDED THE FOLLOWING:
-(defun do-stuff ()
-  "hello")
+(defun greet (greeting)
+  greeting)
 ```
 6. Go to the file `...proj2/tests/main.lisp` and change the `:use` declarations to the following:
 ```
@@ -92,9 +92,10 @@ I'm using emacs 29.1 and slime.
   :description "Test my system.")
 (in-suite master-suite)
 
-(test do-stuff
-  (is (equal "goodbye" (do-stuff)))
-  (is (equal "hello" (do-stuff))))
+(test whether-greet-returns-the-proper-greeting
+  (is (equal "goodbye" (greet "hello")))
+  (is (equal "hello" (greet "hello")))
+  (is (equal "mars" (greet "goodbye"))))
 ```
 
 8. Create a function to run your tests:
@@ -117,12 +118,11 @@ I'm using emacs 29.1 and slime.
   :description "Test my system.")
 (in-suite master-suite)
 
-(test do-stuff
-  (is (equal "goodbye" (do-stuff)))
-  (is (equal "hello" (do-stuff))))
+(test whether-greet-returns-the-proper-greeting
+  (is (equal "goodbye" (greet "hello")))
+  (is (equal "hello" (greet "hello")))
+  (is (equal "mars" (greet "goodbye"))))
 ```
-
-
 9. Go to the file  `...proj2/proj2.asd` and change some of the configuration so that it looks like the
    the following (changes are marked with comments):
 
@@ -136,7 +136,7 @@ I'm using emacs 29.1 and slime.
                 :components
                 ((:file "main"))))
   :description ""
-  :in-order-to ((test-op (test-op "proj2/tests"))))
+  :in-order-to ((test-op (test-op "proj2/tests"))))   ;; <=== Make sure this is correct
 
 (defsystem "proj2/tests"
   :author ""
@@ -155,19 +155,23 @@ I'm using emacs 29.1 and slime.
 
 ```
 CL-USER> (asdf:test-system 'proj2)
+; compiling file "/Users/7stud/quicklisp/local-projects/my-projects/proj2/tests/main.lisp" (written 21 MAR 2024 09:01:58 PM):
+
+; wrote /Users/7stud/.cache/common-lisp/sbcl-2.4.0-macosx-arm64/Users/7stud/quicklisp/local-projects/my-projects/proj2/tests/main-tmpQ371UGST.fasl
+; compilation finished in 0:00:00.006
 
 Running test suite MASTER-SUITE
- Running test DO-STUFF-RETURN-VAL f.   ;; <==== Each f represents a failed test. 
- Did 2 checks.                         ;;       Each dot represents a passing test.
-    Pass: 1 (50%)
+ Running test WHETHER-GREET-RETURNS-THE-PROPER-GREETING f.f   ;;  An f reprsents a failing test.
+ Did 3 checks.                                                ;;  A dot represents a passing test.
+    Pass: 1 (33%)
     Skip: 0 ( 0%)
-    Fail: 1 (50%)
+    Fail: 2 (66%)
 
  Failure Details:
  --------------------------------
- DO-STUFF-RETURN-VAL in MASTER-SUITE []: 
+ WHETHER-GREET-RETURNS-THE-PROPER-GREETING in MASTER-SUITE []: 
       
-(DO-STUFF)
+(GREET "hello")
 
  evaluated to 
 
@@ -183,11 +187,29 @@ EQUAL
 
 
  --------------------------------
+ --------------------------------
+ WHETHER-GREET-RETURNS-THE-PROPER-GREETING in MASTER-SUITE []: 
+      
+(GREET "goodbye")
+
+ evaluated to 
+
+"goodbye"
+
+ which is not 
+
+EQUAL
+
+ to 
+
+"mars"
+
+
+ --------------------------------
 
 T
-CL-USER>
+CL-USER> 
 ```
-
 I think `asdf` is supposed to load your project into the repl, but I find that sometimes I get errors when
 trying to run the tests after I've modified my project's files, even though I know I've corrected the
 errors, and I've saved the files.  If you get persistent errors that you can't solve or that you don't 
@@ -220,7 +242,9 @@ then try:
 CL-USER> (ql:register-local-projects)
 ```
 That will cause `quicklisp` to search through all the directories in `local-projects/` for `.asd` files,
-and the paths to the .asd files it finds will be written into `local-projects/system-index.txt`.
+and the paths to the `.asd `files it finds will be written into `local-projects/system-index.txt`.  If the
+path to your "system" is not in that file, then `(ql:quickload ...)` will not be able to load your "systems"
+into the repl.  However, don't type any paths in that file yourself.
 
 Finally, the following line in `proj2.asd` can cause a lot of headaches:
 
