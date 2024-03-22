@@ -137,3 +137,21 @@ NIL
 NIL
 MY-LIST-FUNCTIONS> 
 ```
+
+And:
+```
+MY-LIST-FUNCTIONS> (run! 'anyoddp-tests)
+
+Running test suite ANYODDP-TESTS
+ Running test ANYODDP-WITH-LIST-OF-EVENS .
+ Running test ANYODDP-WITH-LIST-CONTAINING-ODDS .
+ Did 2 checks.
+    Pass: 2 (100%)
+    Skip: 0 ( 0%)
+    Fail: 0 ( 0%)
+
+T
+NIL
+NIL
+MY-LIST-FUNCTIONS>
+```
