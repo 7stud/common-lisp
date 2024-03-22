@@ -265,7 +265,7 @@ for the function--when the package hasn't been created yet.  The args for the `r
 whatever the function `find-symbol*` returns.  `find-symbol*` lets you specify a symbol, `master-suite`, 
 in a package, `proj1/tests/main` that hasn't been read yet.  None of the `fiveam` tutorials that I read 
 has a `:perform` line that works.  I got the `:perform` line above from the `asdf` manual in the section 
-describing the `test-op` function.  
+describing the [test-op](https://asdf.common-lisp.dev/asdf/Predefined-operations-of-ASDF.html) function.  
 
 
 
