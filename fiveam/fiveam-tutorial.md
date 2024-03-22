@@ -188,7 +188,7 @@ T
 CL-USER>
 ```
 
-I think `asdf` is supposed to load your project, but I find that many times I get errors when
+I think `asdf` is supposed to load your project into the repl, but I find that sometimes I get errors when
 trying to run the tests after I've modified my project's files, even though I know I've corrected the
 errors, and I've saved the files.  If you get persistent errors that you can't solve or that you don't 
 understand after you've been editing any of your project's files, try reloading both of your 
@@ -214,6 +214,13 @@ Then try the following again:
 ```
 CL-USER> (asdf:test-system 'proj2)
 ```
+And, if for some reason you suspect that `asdf` or `(ql:quickload ...)` can't find your "systems",
+then try:
+```
+CL-USER> (ql:register-local-projects)
+```
+That will cause `quicklisp` to search through all the directories in `local-projects/` for `.asd` files,
+and the paths to the .asd files it finds will be written into `local-projects/system-index.txt`.
 
 The following line in `proj2.asd` can cause a lot of headaches:
 
