@@ -252,7 +252,7 @@ Finally, the following line in `proj2.asd` can cause a lot of headaches:
 :perform (test-op (op c) (symbol-call :proj2/tests/main :test-proj2)))
 ```
 
-If you don't define your own function, `test-proj2`, to run your tests, then the `:perform`
+If you don't define your own no arg function, e.g. `test-proj2`, to run your tests, then the `:perform`
 line needs to look like this:
 ```
  :perform (test-op (o s)
