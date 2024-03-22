@@ -264,8 +264,8 @@ allows you to specify a package, `fiveam`, and a function in that package, `run!
 for the function--when the package hasn't been created yet.  The args for the `run!` function are 
 whatever the function `find-symbol*` returns.  `find-symbol*` lets you specify a symbol, `master-suite`, 
 in a package, `proj1/tests/main` that hasn't been read yet.  None of the `fiveam` tutorials that I read 
-has a `:perform` line that works.  I got the `:perform` line from the `asdf` manual in the section 
-describing the `test-op` function.
+has a `:perform` line that works.  I got the `:perform` line above from the `asdf` manual in the section 
+describing the `test-op` function.  
 
 
 
