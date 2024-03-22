@@ -37,11 +37,14 @@ I'm using emacs 29.1, sbcl 2.4.0, and slime 2.29.1.
 (in-suite anyoddp-tests)
 
 (test anyoddp-with-list-of-evens
-  (is (equal (anyoddp '(2 4 6)) t)))
+  (is (equal (anyoddp '(2 4 6)) nil))
+  (is (equal (anyoddp '(2)) nil))
+  (is (equal (anyoddp '()) nil)))
 
 (test anyoddp-with-list-containing-odds
-  (is (equal (anyoddp '(2 4 5 6)) t)))
-
+  (is (equal (anyoddp '(2 3 4)) t))
+  (is (equal (anyoddp '(2 3)) t))
+  (is (equal (anyoddp '(1)) t)))
 ```
 
 3. Here's what I tried:
@@ -104,15 +107,15 @@ MY-LIST-FUNCTIONS> (run! 'master-suite)
 
 Running test suite MASTER-SUITE
  Running test suite SIMPLE-TESTS
-  Running test TEST1 .   ; <=== A dot represents a passing test.
-  Running test TEST2 f   ; <=== An f represents a failed test.
+  Running test TEST1 .         ; <===== A dot represents a test that passed.
+  Running test TEST2 f         ; <===== An f represents a test that failed.
  Running test suite ANYODDP-TESTS
-  Running test ANYODDP-WITH-LIST-OF-EVENS .
-  Running test ANYODDP-WITH-LIST-CONTAINING-ODDS .
- Did 4 checks.
-    Pass: 3 (75%)
+  Running test ANYODDP-WITH-LIST-OF-EVENS ...
+  Running test ANYODDP-WITH-LIST-CONTAINING-ODDS ...
+ Did 8 checks.
+    Pass: 7 (87%)
     Skip: 0 ( 0%)
-    Fail: 1 (25%)
+    Fail: 1 (12%)
 
  Failure Details:
  --------------------------------
@@ -136,7 +139,7 @@ Running test suite MASTER-SUITE
  --------------------------------
 
 NIL
-(#<IT.BESE.FIVEAM::TEST-FAILURE {70080774F3}>)
+(#<IT.BESE.FIVEAM::TEST-FAILURE {70064690A3}>)
 NIL
 MY-LIST-FUNCTIONS> 
 ```
@@ -146,15 +149,15 @@ And:
 MY-LIST-FUNCTIONS> (run! 'anyoddp-tests)
 
 Running test suite ANYODDP-TESTS
- Running test ANYODDP-WITH-LIST-OF-EVENS .
- Running test ANYODDP-WITH-LIST-CONTAINING-ODDS .
- Did 2 checks.
-    Pass: 2 (100%)
+ Running test ANYODDP-WITH-LIST-OF-EVENS ...
+ Running test ANYODDP-WITH-LIST-CONTAINING-ODDS ...
+ Did 6 checks.
+    Pass: 6 (100%)
     Skip: 0 ( 0%)
     Fail: 0 ( 0%)
 
 T
 NIL
 NIL
-MY-LIST-FUNCTIONS>
+MY-LIST-FUNCTIONS> 
 ```
