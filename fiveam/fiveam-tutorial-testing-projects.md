@@ -252,21 +252,20 @@ Finally, the following line in `proj2.asd` can cause a lot of headaches:
 :perform (test-op (op c) (symbol-call :proj2/tests/main :test-proj2)))
 ```
 
-If you don't define your own no arg function, e.g. `test-proj2`, to run your tests, then the `:perform`
+If you don't define your own no-arg function, e.g. `test-proj2`, to run your tests, then the `:perform`
 line needs to look like this:
 ```
- :perform (test-op (o s)
-       (symbol-call :fiveam '#:run!
-          (find-symbol* '#:master-suite
-                        :proj2/tests/main))))
+  :perform (test-op (o s)
+        (symbol-call :fiveam :run!
+           (find-symbol* :master-suite :proj2/tests/main))))
 ```
-That tortured syntax is necessary because the `:perform` line is read before any of the packages or symbols have 
-been created in your project.  The function `symbol-call` allows you to specify a package, `fiveam`, and a 
-function in that package, `run!`, and the args for the function--when the package hasn't been created yet.
-The args for the `run!` function are whatever the function `find-symbol*` returns.  `find-symbol*` lets you
-specify a symbol, `master-suite`, in a package, `proj1/tests/main` that hasn't been read yet.  None of the 
-`fiveam` tutorials that I read has a `:perform` line that works.  I got the `:perform` line with the 
-tortured syntax from the `asdf` manual in the section describing the `test-op` function.
+The `:perform` line is read before any of the packages are created.  The function `symbol-call` 
+allows you to specify a package, `fiveam`, and a function in that package, `run!`, and the args 
+for the function--when the package hasn't been created yet.  The args for the `run!` function are 
+whatever the function `find-symbol*` returns.  `find-symbol*` lets you specify a symbol, `master-suite`, 
+in a package, `proj1/tests/main` that hasn't been read yet.  None of the `fiveam` tutorials that I read 
+has a `:perform` line that works.  I got the `:perform` line from the `asdf` manual in the section 
+describing the `test-op` function.
 
 
 
