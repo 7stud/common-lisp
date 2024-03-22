@@ -222,7 +222,7 @@ CL-USER> (ql:register-local-projects)
 That will cause `quicklisp` to search through all the directories in `local-projects/` for `.asd` files,
 and the paths to the .asd files it finds will be written into `local-projects/system-index.txt`.
 
-The following line in `proj2.asd` can cause a lot of headaches:
+Finally, the following line in `proj2.asd` can cause a lot of headaches:
 
 ```
 :perform (test-op (op c) (symbol-call :proj2/tests/main :test-proj2)))
@@ -240,7 +240,9 @@ That tortured syntax is necessary because the `:perform` line is read before any
 been created in your project.  The function `symbol-call` allows you to specify a package, `fiveam`, and a 
 function in that package, `run!`, and the args for the function--when the package hasn't been created yet.
 The args for the `run!` function are whatever the function `find-symbol*` returns.  `find-symbol*` lets you
-specify a symbol, `master-suite`, in a package, `proj1/tests/main` that hasn't been read yet.
+specify a symbol, `master-suite`, in a package, `proj1/tests/main` that hasn't been read yet.  None of the 
+`fiveam` tutorials that I read has a `:perform` line that works.  I got the `:perform` line above with 
+the tortured syntax from the `asdf` manual in the section describing the `test-op` function.
 
 
 
