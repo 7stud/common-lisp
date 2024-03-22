@@ -1,3 +1,5 @@
+;; ~/quicklisp/local-projects/my-projects/proj2.asd
+
 (defsystem "proj2"
   :version "0.0.1"
   :author ""
