@@ -211,7 +211,7 @@ T
 CL-USER> 
 ```
 I think `asdf` is supposed to load your project into the repl, but I find that sometimes I get errors when
-trying to run the tests after I've modified my project's files, even though I know I've corrected the
+trying to run the tests after I've modified my project's files--even though I know I've corrected the
 errors, and I've saved the files.  If you get persistent errors that you can't solve or that you don't 
 understand after you've been editing any of your project's files, try reloading both of your 
 project's "systems" in the repl:
