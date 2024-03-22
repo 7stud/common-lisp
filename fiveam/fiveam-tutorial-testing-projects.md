@@ -243,7 +243,7 @@ CL-USER> (ql:register-local-projects)
 ```
 That will cause `quicklisp` to search through all the directories in `local-projects/` for `.asd` files,
 and the paths to the `.asd `files it finds will be written into `local-projects/system-index.txt`.  If the
-path to your "system" is not in that file, then `(ql:quickload ...)` will not be able to load your "system"
+path to your "system" is not in that file, then `ql:quickload` will not be able to load your "system"
 into the repl.  However, don't type any paths in that file yourself.
 
 Finally, the following line in `proj2.asd` can cause a lot of headaches:
@@ -259,9 +259,9 @@ line needs to look like this:
         (symbol-call :fiveam :run!
            (find-symbol* :master-suite :proj2/tests/main))))
 ```
-The `:perform` line is read before any of the packages are created.  The function `symbol-call` 
-allows you to specify a package, `fiveam`, and a function in that package, `run!`, and the args 
-for the function--when the package hasn't been created yet.  The args for the `run!` function are 
+The `:perform` line is read before any of the packages in your project are created.  The function 
+`symbol-call` allows you to specify a package, `fiveam`, and a function in that package, `run!`, and 
+the args for the function--when the package hasn't been created yet.  The args for the `run!` function are 
 whatever the function `find-symbol*` returns.  `find-symbol*` lets you specify a symbol, `master-suite`, 
 in a package, `proj1/tests/main` that hasn't been read yet.  None of the `fiveam` tutorials that I read 
 has a `:perform` line that works.  I got the `:perform` line above from the `asdf` manual in the section 
