@@ -258,7 +258,7 @@ line needs to look like this:
  :perform (test-op (o s)
        (symbol-call :fiveam '#:run!
           (find-symbol* '#:master-suite
-                        :proj1/tests/main))))
+                        :proj2/tests/main))))
 ```
 That tortured syntax is necessary because the `:perform` line is read before any of the packages or symbols have 
 been created in your project.  The function `symbol-call` allows you to specify a package, `fiveam`, and a 
