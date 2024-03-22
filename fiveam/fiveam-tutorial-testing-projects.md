@@ -265,9 +265,8 @@ been created in your project.  The function `symbol-call` allows you to specify 
 function in that package, `run!`, and the args for the function--when the package hasn't been created yet.
 The args for the `run!` function are whatever the function `find-symbol*` returns.  `find-symbol*` lets you
 specify a symbol, `master-suite`, in a package, `proj1/tests/main` that hasn't been read yet.  None of the 
-`fiveam` tutorials that I read has a `:perform` line that works.  I got the `:perform` line 
-above containing the tortured syntax from the `asdf` manual in the section describing the `test-op`
-function.
+`fiveam` tutorials that I read has a `:perform` line that works.  I got the `:perform` line with the 
+tortured syntax from the `asdf` manual in the section describing the `test-op` function.
 
 
 
