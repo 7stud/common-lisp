@@ -1,4 +1,5 @@
-3-22-2024 
+3-22-2024   
+I'm using emacs 29.1 and slime.
 
 Here is a file that defines a package containing one function followed by some test suites:
 ```
