@@ -1,4 +1,4 @@
-;; .../proj2/tests/main.lisp
+;; ~/quicklisp/local-projects/my-projects/proj2/tests/main.lisp
 
 (defpackage proj2/tests/main
   (:use :cl
