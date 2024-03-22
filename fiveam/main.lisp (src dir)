@@ -1,3 +1,5 @@
+;; ...proj2/src/main.lisp
+
 (defpackage proj2
   (:use :cl)
   (:export :greet))
