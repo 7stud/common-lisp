@@ -243,7 +243,7 @@ CL-USER> (ql:register-local-projects)
 ```
 That will cause `quicklisp` to search through all the directories in `local-projects/` for `.asd` files,
 and the paths to the `.asd `files it finds will be written into `local-projects/system-index.txt`.  If the
-path to your "system" is not in that file, then `(ql:quickload ...)` will not be able to load your "systems"
+path to your "system" is not in that file, then `(ql:quickload ...)` will not be able to load your "system"
 into the repl.  However, don't type any paths in that file yourself.
 
 Finally, the following line in `proj2.asd` can cause a lot of headaches:
