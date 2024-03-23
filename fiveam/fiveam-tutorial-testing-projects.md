@@ -267,6 +267,19 @@ in a package, `proj1/tests/main` that hasn't been read yet.  None of the `fiveam
 has a `:perform` line that works.  I got the `:perform` line above from the `asdf` manual in the section 
 describing the [test-op](https://asdf.common-lisp.dev/asdf/Predefined-operations-of-ASDF.html#index-test_002dop) function.  
 
+For instance, the turtleware fiveam tutorial may work once (it didn't for me), but you certainly 
+won't be able to run the tetsts again if you quit the repl, then restart it.  Why?  In the tutorial, 
+the author loads both "sytems" with `ql:quickload`, and thereafter changes the .asd file to add 
+the `:perform` line.  That means all the packages were loaded into the repl *before* the :perform
+line was read, therefore the `:perform` line won't have any issues with packages that don't exist.  But, 
+if you restart the repl, then try to load the "systems" into the repl, the `:perform` line *will be* 
+read before the packages exist, and then you will get "package XYZ doesn't exist" errors because the
+:perform line wasn't written properly.  In essence, the tutorial mistakenly creates a test methodology 
+that requires that you delete the `:perform` line in the .asd file, then load the "systems' into the repl 
+with `ql:quickload`, then add the ":perform line back into the .asd file, then run the tests.  
+
+
+
 
 
 
