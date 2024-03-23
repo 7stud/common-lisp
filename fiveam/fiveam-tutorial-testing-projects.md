@@ -274,9 +274,9 @@ the `:perform` line.  That means all the packages were loaded into the repl *bef
 line was read, therefore the `:perform` line won't have any issues with packages that don't exist.  But, 
 if you restart the repl, then try to load the "systems" into the repl, the `:perform` line *will be* 
 read before the packages exist, and then you will get "package XYZ doesn't exist" errors because the
-:perform line wasn't written properly.  In essence, the tutorial mistakenly creates a test methodology 
+`:perform` line wasn't written properly.  In essence, the tutorial mistakenly creates a test methodology 
 that requires that you delete the `:perform` line in the .asd file, then load the "systems' into the repl 
-with `ql:quickload`, then add the ":perform line back into the .asd file, then run the tests.  
+with `ql:quickload`, then add the `:perform` line back into the .asd file, then run the tests.  
 
 
 
